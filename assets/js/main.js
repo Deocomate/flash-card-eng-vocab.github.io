@@ -11,7 +11,7 @@ $(document).ready(function () {
             <div class="contain-position">
                 <div class="flashcard-item front">
                     <div class="px-4 px-md-5">
-                        <p class="mb-0"><b class="vocabulary fs-1">${vocab.word}</b></p>
+                        <p class="mb-0 vocabulary"><b class="fs-1">${vocab.word}</b></p>
                         <p style="line-height: 25px;" class="example fs-3 text-center">
                         ${vocab.example}
                         </p>
@@ -19,7 +19,7 @@ $(document).ready(function () {
                 </div>
                 <div class="flashcard-item back">
                     <div class="px-4 px-md-5">
-                        <p class="mb-0"><b class="vocabulary fs-1">${vocab.vnm}</b></p>
+                        <p class="mb-0 vocabulary"><b class="fs-1">${vocab.vnm}</b></p>
                         <p style="line-height: 25px;" class="example fs-3 text-center">
                             ${vocab.example_vnm}
                         </p>

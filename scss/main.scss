@@ -16,6 +16,9 @@
     height: 300px;
 }
 .flashcard-item {
+    .vocabulary{
+        text-align: center;
+    }
     cursor: pointer;
     width: 100%;
     position: absolute;
@@ -55,7 +58,7 @@
     }
     &.back.flip {
         z-index: 1;
-        transform: rotateY(0);
+        transform: rotateY(360deg);
         * {
             color: white;
         }
