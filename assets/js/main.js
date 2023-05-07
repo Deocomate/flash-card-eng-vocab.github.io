@@ -1,47 +1,18 @@
 $(document).ready(function () {
-
-
     console.log(data);
-    let vocabList = data[0].vocabulary
-    let htmlVocab = ``;
-    for (const vocab of vocabList) {
-        htmlVocab += //html
-            `
-        <div class='item'>
-            <div class="contain-position">
-                <div class="flashcard-item front">
-                    <div class="px-4 px-md-5">
-                        <p class="mb-0 vocabulary"><b class="fs-1">${vocab.word}</b></p>
-                        <p style="line-height: 25px;" class="example fs-3 text-center">
-                        ${vocab.example}
-                        </p>
-                    </div>
-                </div>
-                <div class="flashcard-item back">
-                    <div class="px-4 px-md-5">
-                        <p class="mb-0 vocabulary"><b class="fs-1">${vocab.vnm}</b></p>
-                        <p style="line-height: 25px;" class="example fs-3 text-center">
-                            ${vocab.example_vnm}
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        `
-    }
-    console.log(htmlVocab);
-    $(".flashcard-contain")[0].innerHTML = htmlVocab
-
-
-
-
-
+    let dataDay = data[0].vocabulary;
+    initSelectLesson(data)
+    initHTML(dataDay);
     initApp();
+
+
+    $("#lesson-select").change(function (e) {
+        let day = $(this).val();
+        dataDay = data[day - 1].vocabulary
+        initHTML(dataDay);
+        initApp();
+    })
 });
-
-function renderFlashcard() {
-
-}
 
 function initApp() {
     let colorList = [
@@ -73,7 +44,55 @@ function initApp() {
         $(this).toggleClass("flip")
         $(this).parent().find(".front").toggleClass("flip")
     });
+
     $('.flashcard-contain').slick({
-        arrows:false
+        arrows: false
     });
+}
+
+function initHTML(dataDay) {
+    let vocabList = dataDay
+    let htmlVocab = ``;
+    for (const vocab of vocabList) {
+        htmlVocab += //html
+            `
+        <div class='item'>
+            <div class="contain-position">
+                <div class="flashcard-item front">
+                    <div class="px-4 px-md-5">
+                        <p class="mb-0 vocabulary"><b class="fs-1">${vocab.word}</b></p>
+                        <p style="line-height: 25px;" class="example fs-3 text-center">
+                        ${vocab.example}
+                        </p>
+                    </div>
+                </div>
+                <div class="flashcard-item back">
+                    <div class="px-4 px-md-5">
+                        <p class="mb-0 vocabulary"><b class="fs-1">${vocab.vnm}</b></p>
+                        <p style="line-height: 25px;" class="example fs-3 text-center">
+                            ${vocab.example_vnm}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `
+    }
+    $(".flashcard-main")[0].innerHTML = /*html */
+        `
+    <div class='flashcard-contain'>
+        ${htmlVocab}
+    </div>
+    `
+}
+
+function initSelectLesson(data) {
+    let select = $("#lesson-select")[0]
+    let html = ``;
+
+    let index = 0
+    for (let item of data) {
+        html += /*html */ `<option value="${item.day}">Day ${item.day}</option>`;
+    }
+    select.innerHTML = html;
 }
